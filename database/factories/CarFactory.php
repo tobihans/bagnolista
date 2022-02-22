@@ -17,12 +17,12 @@ class CarFactory extends Factory
     public function definition()
     {
         return [
-            'model' => $this->faker->word,
+            'model' => $this->faker->word(),
             'specs' => '{"engine": "gas", "rotor": "rooot"}',
-            'photos' => $this->faker->imageUrl,
+            'photos' => $this->faker->imageUrl(),
             'pricing' => $this->faker->randomNumber(3),
             'description' => '',
-            'is_available' => $this->faker->boolean,
+            'is_available' => $this->faker->boolean() == 0,
             'description_json' => '{}',
         ];
     }
