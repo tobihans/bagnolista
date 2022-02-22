@@ -17,12 +17,12 @@ return new class extends Migration
             $table->id();
             $table->foreignId('brand_id')->constrained();
             $table->foreignId('category_id')->constrained();
-            $table->string('model');
-            $table->text('description_json'); // Hold the json from the editor
-            $table->text('description'); // Hold the hmtl generated from the editor
-            $table->text('photos'); // One path per line
             $table->json('specs');
+            $table->text('photos'); // One path per line
+            $table->string('model');
             $table->double('pricing');
+            $table->text('description'); // Hold the hmtl generated from the editor
+            $table->text('description_json'); // Hold the json from the editor
             $table->boolean('is_available');
             $table->timestamps();
             $table->softDeletes();

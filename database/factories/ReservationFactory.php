@@ -17,7 +17,9 @@ class ReservationFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'starts_at' => $this->faker->dateTime(),
+            'duration' => $this->faker->randomNumber(10),
+            'total_amount' => $this->faker->randomNumber(10),
         ];
     }
 }

@@ -17,7 +17,8 @@ class PaymentFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'transaction_id' => $this->faker->swiftBicNumber(),
+            'amount' => $this->faker->randomNumber(4),
         ];
     }
 }
