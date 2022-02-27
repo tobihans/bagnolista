@@ -1,0 +1,480 @@
+.cover {
+  width: 100%;
+  height: 100vh;
+  background: url(../img/hero-bg.png) top center no-repeat;
+  background-size: cover;
+}
+
+.cover h1 {
+  margin: 0;
+  font-size: 48px;
+  font-weight: 700;
+  color: #000;
+}
+
+.cover h2 {
+  color: #444444;
+  margin: 15px 0 0 0;
+  font-size: 26px;
+}
+
+.cover .btn-get-started {
+  margin-top: 30px;
+  line-height: 0;
+  padding: 15px 40px;
+  border-radius: 4px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  color: #000;
+  background: transparent;
+    border: solid 4px black;
+    text-decoration: none;
+
+}
+.cover .btn-get-started:hover {
+text-decoration: none;
+    color: white;
+    background-color: black;
+}
+
+.cover .btn-get-started:hover i {
+  -webkit-transform: translateX(5px);
+          transform: translateX(5px);
+}
+
+.cover .btn-get-started span {
+  font-family: "Nunito", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: 1px;
+}
+
+.cover .btn-get-started i {
+  margin-left: 5px;
+  font-size: 18px;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.cover .cover-img {
+  text-align: right;
+}
+section {
+    padding: 60px 0;
+    overflow: hidden;
+}
+.section-header {
+    text-align: left;
+    padding-bottom: 40px;
+}
+
+.section-header h2 {
+    font-size: 30px;
+    letter-spacing: 2px;
+    font-weight: 700;
+    margin: 0;
+    color: #000000;
+    text-transform: uppercase;
+    font-style: italic;
+    text-transform: uppercase;
+}
+
+/*---=======button=====-----*/
+
+ .btn-get-started {
+    margin-top: 30px;
+    line-height: 0;
+    padding: 15px 20px;
+    border-radius: 4px;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    color: #000;
+    background: transparent;
+    border: solid 2px black;
+    text-decoration: none;
+     font-weight: bold;
+
+}
+ .btn-get-started:hover {
+    text-decoration: none;
+    color: white;
+    background-color: black;
+}
+
+ .btn-get-started:hover i {
+    -webkit-transform: translateX(5px);
+    transform: translateX(5px);
+}
+
+ .btn-get-started span {
+    font-family: "Nunito", sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+
+ .btn-get-started i {
+    margin-left: 5px;
+    font-size: 18px;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+}
+.btn-special {
+    line-height: 0;
+    padding: 15px;
+    border-radius: 4px;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    color: #000;
+    background: transparent;
+    border: solid 2px black;
+    text-decoration: none;
+}
+.btn-special:hover {
+   text-decoration: none;
+    color: white;
+    background-color: black;
+}
+
+.btn-special:hover i {
+    -webkit-transform: translateX(5px);
+    transform: translateX(5px);
+}
+
+.btn-special span {
+    font-family: "Nunito", sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+
+.btn-special i {
+    margin-left: 5px;
+    font-size: 15px;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+}
+/*------==== reduction section  ===-----*/
+.btn-reduction {
+    line-height: 0;
+    padding: 15px;
+    border-radius: 4px;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    color: #ffffff;
+    background: transparent;
+    border: solid 2px white;
+    text-decoration: none;
+}
+.btn-reduction:hover {
+    text-decoration: none;
+    color: black;
+    background-color: white;
+}
+
+.btn-reduction:hover i {
+    -webkit-transform: translateX(5px);
+    transform: translateX(5px);
+}
+
+.btn-reduction span {
+    font-family: "Nunito", sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+
+.btn-reduction i {
+    margin-left: 5px;
+    font-size: 15px;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+}
+/*----=== button footer  ===----*/
+.btn-footer {
+    line-height: 0;
+    padding: 6px;
+    border-radius: 4px;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    color: #ffffff;
+    background: transparent;
+    border: solid 2px white;
+    text-decoration: none;
+}
+.btn-footer:hover {
+    text-decoration: none;
+    color: black;
+    background-color: white;
+}
+
+.btn-footer:hover i {
+    -webkit-transform: translateX(5px);
+    transform: translateX(5px);
+}
+
+.btn-footer span {
+    font-family: "Nunito", sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+
+.btn-footer i {
+    margin-left: 5px;
+    font-size: 15px;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+}
+/*---===== section ====----*/
+.border-none{
+    border: none !important;
+}
+.price{
+    font-size: 20px;
+    font-weight: bold;
+    color: #7d5c07;
+}
+.p-title{
+    font-size: 20px;
+    font-weight: 700;
+    color: #1a1919;
+}
+.p-opacity{
+    color: black;
+    opacity: 70%;
+}
+.hover{
+    background-color: black;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+}
+.opinion .opinion-text{
+    font-size: 20px;
+}
+.reduction-section{
+    background-color: black;
+}
+.reduction-header h2 {
+    font-size: 30px;
+    letter-spacing: 2px;
+    font-weight: 700;
+    margin: 0;
+    color: #ffffff;
+    text-transform: uppercase;
+    font-style: italic;
+    text-transform: uppercase;
+}
+/*-----==== footer ====-----*/
+.footer {
+    background: #000000;
+    padding: 0 0 30px 0;
+    font-size: 14px;
+}
+
+.footer .footer-newsletter {
+    padding: 50px 0;
+    background: #000000;
+    border-top: 1px solid #e1ecff;
+}
+
+.footer .footer-newsletter h4 {
+    font-size: 24px;
+    margin: 0 0 10px 0;
+    padding: 0;
+    line-height: 1;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.footer .footer-newsletter form {
+    margin-top: 20px;
+    background: #fff;
+    padding: 6px 10px;
+    position: relative;
+    border-radius: 4px;
+    border: 1px solid #e1ecff;
+}
+
+.footer .footer-newsletter form input[type="email"] {
+    border: 0;
+    padding: 8px;
+    width: calc(100% - 140px);
+}
+
+.footer .footer-newsletter form button[type="submit"] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    border: 0;
+    background: none;
+    font-size: 16px;
+    padding: 0 30px;
+    margin: 3px;
+    background: #4154f1;
+    color: #fff;
+    transition: 0.3s;
+    border-radius: 4px;
+}
+
+.footer .footer-newsletter form button[type="submit"]:hover {
+    background: #5969f3;
+}
+.footer .footer-top .social-links a {
+    font-size: 20px;
+    display: inline-block;
+    color: rgba(1, 41, 112, 0.5);
+    line-height: 0;
+    margin-right: 10px;
+    transition: 0.3s;
+}
+
+.footer .footer-top .social-links a:hover {
+    color: #012970;
+}
+
+.footer .footer-top h4 {
+    font-size: 16px;
+    font-weight: bold;
+    color: #012970;
+    text-transform: uppercase;
+    position: relative;
+    padding-bottom: 12px;
+}
+
+.footer .footer-top .footer-links {
+    margin-bottom: 30px;
+}
+
+.footer .footer-top .footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer .footer-top .footer-links ul   i {
+    padding-right: 5px;
+    color: #d0d4fc;
+    font-size: 15px;
+    line-height: 0;
+}
+
+.footer .footer-top .footer-links ul li {
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+}
+
+.footer .footer-top .footer-links ul li:first-child {
+    padding-top: 0;
+}
+
+.footer .footer-top .footer-links ul a {
+    color: #ffffff;
+    transition: 0.3s;
+    display: inline-block;
+    line-height: 1;
+    font-size: 18px;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+}
+
+.footer .footer-top .footer-links ul a:hover {
+    color: whitesmoke;
+    text-decoration: none;
+    -webkit-transform: translateX(5px);
+    transform: translateX(5px);
+}
+
+
+/*-----===== Why rent a car section  =====-----*/
+.why-rent a{
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+}
+.why-rent a:hover{
+    text-decoration: none;
+}
+
+/*-----------------------=================== Rent car section  ===================-------------------------------*/
+.rent-car a{
+    text-decoration: none;
+    color: black;
+}
+.rent-car a:hover{
+    color: black;
+}
+.brand-name{
+    font-size: 18px;
+}
+/*-----------------------=================== Product section ===================-------------------------------*/
+.product .product-title{
+    text-align: center;
+    padding-bottom: 40px;
+}
+.product .product-title h3{
+    font-size: 20px;
+    letter-spacing: 2px;
+    font-weight: 700;
+    margin: 0;
+    color: #000000;
+    text-transform: uppercase;
+    font-style: italic;
+    text-transform: uppercase;
+}
+.product .product-description{
+color: black;
+}
+.product .product-tarification{
+    line-height: 0;
+    padding: 9px;
+    border-radius: 4px;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    color: white;
+    background: black;
+    text-decoration: none;
+    font-style: italic;
+    font-weight: bold;
+}
+.product .prod-desc{
+    text-align: center;
+    padding-bottom: 10px;
+}
+.product .prod-desc h6{
+    font-size: 15px;
+    letter-spacing: 1px;
+    font-weight: 700;
+    margin: 0;
+    color: #000000;
+    text-transform: uppercase;
+    font-style: italic;
+}
+.product .btn-prod {
+    line-height: 0;
+    padding: 6px;
+    border-radius: 4px;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    color: #000000;
+    background: transparent;
+    border: solid 2px black;
+    text-decoration: none;
+}
+.product .btn-prod i {
+    margin-left: 5px;
+    font-size: 15px;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+}
+.product .btn-prod i:hover {
+   transform: translateX(5px);
+    color: white;
+}
+.product .btn-prod:hover{
+    color:white;
+    background-color: black;
+}
+/*# sourceMappingURL=style.css.map */

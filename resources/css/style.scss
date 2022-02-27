@@ -1,0 +1,29 @@
+
+// special button
+.btn-special
+{
+    margin-top: 30px;
+    line-height: 0;
+    padding: 15px 40px;
+    border-radius: 4px;
+    transition: 0.5s;
+    color: #000;
+    background: #fff;
+    box-shadow: 0px 5px 30px rgba(18, 18, 19, 0.4);
+    &:hover{
+        i {
+            transform: translateX(5px);
+          }
+    }
+    span {
+        font-family: "Nunito", sans-serif;
+        font-weight: 600;
+        font-size: 16px;
+        letter-spacing: 1px;
+      }
+      i {
+        margin-left: 5px;
+        font-size: 18px;
+        transition: 0.3s;
+      }
+}
