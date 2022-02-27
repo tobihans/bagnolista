@@ -18,8 +18,8 @@ class ReservationFactory extends Factory
     {
         return [
             'starts_at' => $this->faker->dateTime(),
-            'duration' => $this->faker->randomNumber(10),
-            'total_amount' => $this->faker->randomNumber(10),
+            'duration' => $this->faker->randomNumber(1),
+            'total_amount' => $this->faker->randomNumber(2),
         ];
     }
 }

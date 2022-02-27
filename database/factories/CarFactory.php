@@ -23,7 +23,6 @@ class CarFactory extends Factory
             'pricing' => $this->faker->randomNumber(3),
             'description' => '',
             'is_available' => $this->faker->boolean() == 0,
-            'description_json' => '{}',
         ];
     }
 }

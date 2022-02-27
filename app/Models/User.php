@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Payment;
+use App\Models\Reservation;
 
 class User extends Authenticatable
 {
@@ -43,4 +45,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function payments() {
+        return $this->hasMany(Payment::class);
+    }
+
+    public function reservations() {
+        return $this->hasMany(Reservation::class);
+    }
 }
