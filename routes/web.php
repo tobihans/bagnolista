@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CarsController;
+use App\Http\Controllers\ReservationsController;
 use App\Http\Controllers\SettingsController;
 use App\Models\Car;
 use App\Models\Payment;
@@ -17,6 +19,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+require __DIR__ . '/auth.php';
 
 Route::get('/', function () {
     return view('welcome');
@@ -42,4 +46,30 @@ Route::get('/dashboard', function () {
 
 Route::get('/settings', [SettingsController::class, 'index'])->name('settings');
 
-require __DIR__ . '/auth.php';
+// Cars
+Route::controller(CarsController::class)
+    ->name('cars.')
+    ->prefix('cars')
+    ->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/{id}', 'show')->name('show');
+        Route::get('/new', 'store')->name('store');
+        Route::get('/{id}/edit', 'edit')->name('edit');
+        Route::post('/', 'store')->name('store');
+        Route::put('/{id}', '')->name('update');
+        Route::delete('/{id}', 'destroy')->name('destroy');
+    });
+
+// Reservations
+Route::controller(ReservationsController::class)
+    ->name('reservations.')
+    ->prefix('reservations')
+    ->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/{id}', 'show')->name('show');
+        Route::get('/new', 'store')->name('store');
+        Route::get('/{id}/edit', 'edit')->name('edit');
+        Route::post('/', 'store')->name('store');
+        Route::put('/{id}', '')->name('update');
+        Route::delete('/{id}', 'destroy')->name('destroy');
+    });

@@ -65,7 +65,7 @@
                         <tbody class="divide-y">
                             @foreach($reservations as $r)
                                 <tr>
-                                    <td class="p-2">{{ $loop->index + 1 }}</td>
+                                    <td class="p-2 font-light text-sm">{{ $loop->index + 1 }}</td>
                                     <td class="p-2">{{ $r->user->name }}</td>
                                     <td class="p-2">
                                         <span class="font-sans font-semibold">{{ $r->car->category->name }},</span>
@@ -100,7 +100,7 @@
                         <tbody class="divide-y">
                         @foreach($cars as $c)
                             <tr>
-                                <td class="p-2">{{ $loop->index + 1 }}</td>
+                                <td class="p-2 font-light text-sm">{{ $loop->index + 1 }}</td>
                                 <td class="p-2">{{ $c->category->name }}</td>
                                 <td class="p-2">{{ $c->brand->name }}</td>
                                 <td class="p-2">{{ $c->model }}</td>
@@ -132,7 +132,7 @@
                         <tbody class="divide-y">
                         @foreach($payments as $p)
                             <tr>
-                                <td class="p-2">{{ $loop->index + 1 }}</td>
+                                <td class="p-2 font-light text-sm">{{ $loop->index + 1 }}</td>
                                 <td class="p-2">{{ $r->user->name }}</td>
                                 <td class="p-2 font-semibold">{{ $p->amount . ' XOF' }}</td>
                                 <td class="p-2">{{ $p->created_at }}</td>
@@ -148,6 +148,4 @@
             </div>
         </div>
     </div>
-{{--    {{ $reservations }}--}}
-{{--    {{ $cars }}--}}
 </x-app-layout>

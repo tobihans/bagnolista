@@ -5,17 +5,24 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreReservationRequest;
 use App\Http\Requests\UpdateReservationRequest;
 use App\Models\Reservation;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\Request;
 
 class ReservationsController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $limit = $request->input('limit', 15);
+        $reservations = Reservation::simplePaginate(20);
+
+        return view('reservations.index', compact('reservations'));
     }
 
     /**

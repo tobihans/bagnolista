@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\Request;
 
 class CarsController extends Controller
 {
@@ -20,9 +21,9 @@ class CarsController extends Controller
     public function index(Request $request)
     {
         $limit = $request->input('limit', 15);
-        $users = User::simplePaginate($limit);
+        $cars = Car::simplePaginate(20);
 
-        return view('admin.cars.index', compact('users'));
+        return view('admin.cars.index', compact('cars'));
     }
 
     /**
