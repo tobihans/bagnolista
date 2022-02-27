@@ -4,4 +4,4 @@ import Alpine from 'alpinejs';
 
 window.Alpine = Alpine;
 
-Alpine.start();
+// Alpine is started at the end of the page so all scripts that depends on it are loaded first
