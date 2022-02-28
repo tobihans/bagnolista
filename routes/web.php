@@ -50,26 +50,28 @@ Route::get('/settings', [SettingsController::class, 'index'])->name('settings');
 Route::controller(CarsController::class)
     ->name('cars.')
     ->prefix('cars')
+    ->middleware('auth')
     ->group(function () {
-        Route::get('/', 'index')->name('index');
-        Route::get('/{id}', 'show')->name('show');
-        Route::get('/new', 'store')->name('store');
-        Route::get('/{id}/edit', 'edit')->name('edit');
-        Route::post('/', 'store')->name('store');
-        Route::put('/{id}', '')->name('update');
-        Route::delete('/{id}', 'destroy')->name('destroy');
+        Route::get('', 'index')->name('index');
+        Route::get('{id}', 'show')->whereNumber('id')->name('show');
+        Route::get('new', 'create')->name('create');
+        Route::get('{id}/edit', 'edit')->whereNumber('id')->name('edit');
+        Route::post('', 'store')->name('store');
+        Route::put('{id}', 'update')->whereNumber('id')->name('update');
+        Route::delete('{id}', 'destroy')->whereNumber('id')->name('destroy');
     });
 
 // Reservations
 Route::controller(ReservationsController::class)
     ->name('reservations.')
     ->prefix('reservations')
+    ->middleware('auth')
     ->group(function () {
         Route::get('/', 'index')->name('index');
-        Route::get('/{id}', 'show')->name('show');
-        Route::get('/new', 'store')->name('store');
-        Route::get('/{id}/edit', 'edit')->name('edit');
+        Route::get('/{id}', 'show')->whereNumber('id')->name('show');
+        Route::get('/new', 'create')->name('create');
+        Route::get('/{id}/edit', 'edit')->whereNumber('id')->name('edit');
         Route::post('/', 'store')->name('store');
-        Route::put('/{id}', '')->name('update');
-        Route::delete('/{id}', 'destroy')->name('destroy');
+        Route::put('/{id}', 'update')->whereNumber('id')->name('update');
+        Route::delete('/{id}', 'destroy')->whereNumber('id')->name('destroy');
     });

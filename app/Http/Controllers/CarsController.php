@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCarRequest;
 use App\Http\Requests\UpdateCarRequest;
+use App\Models\Brand;
 use App\Models\Car;
+use App\Models\Category;
 use App\Models\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -33,7 +35,9 @@ class CarsController extends Controller
      */
     public function create()
     {
-        return  view('admin.cars.create');
+        $categories = Category::all()->pluck('name', 'id');
+        $brands = Brand::all()->pluck('name', 'id');
+        return  view('admin.cars.create', compact('categories', 'brands'));
     }
 
     /**
@@ -44,7 +48,6 @@ class CarsController extends Controller
      */
     public function store(StoreCarRequest $request)
     {
-        //
     }
 
     /**
@@ -55,7 +58,6 @@ class CarsController extends Controller
      */
     public function show(Car $car)
     {
-        //
     }
 
     /**
@@ -66,7 +68,6 @@ class CarsController extends Controller
      */
     public function edit(Car $car)
     {
-        //
     }
 
     /**
@@ -78,7 +79,6 @@ class CarsController extends Controller
      */
     public function update(UpdateCarRequest $request, Car $car)
     {
-        //
     }
 
     /**
@@ -89,6 +89,5 @@ class CarsController extends Controller
      */
     public function destroy(Car $car)
     {
-        //
     }
 }
