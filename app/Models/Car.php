@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Reservation;
 use App\Models\Brand;
 use App\Models\Category;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Car extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     /**
      * @var Mass assignable fields
@@ -20,9 +21,10 @@ class Car extends Model
         'specs',
         'photos',
         'pricing',
+        'brand_id',
+        'category_id',
         'description',
         'is_available',
-        'description_json',
     ];
 
     public function reservations() {

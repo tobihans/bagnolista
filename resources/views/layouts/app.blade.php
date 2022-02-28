@@ -16,7 +16,7 @@
         @stack('styles')
 
         <!-- Scripts -->
-        <script src="{{ asset('js/app.js') }}" defer></script>
+        <script src="{{ asset('js/app.js') }}"></script>
         @stack('scripts')
     </head>
     <body class="font-sans antialiased">
@@ -38,4 +38,7 @@
             </main>
         </div>
     </body>
+    <script>
+        window.Alpine.start();
+    </script>
 </html>

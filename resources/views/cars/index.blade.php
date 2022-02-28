@@ -4,7 +4,12 @@
             {{-- Last cars --}}
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mb-4">
                 <div class="p-3 flex justify-end">
-                    <x-button onclick="location.assign('/cars/new')">Nouveau</x-button>
+                    <a href="{{ route('cars.create') }}" class="block text-sm text-slate-500
+                              mr-0 py-2 px-4
+                              rounded-md border-0
+                              text-sm font-semibold
+                              bg-violet-700 text-violet-50
+                              hover:bg-violet-600">Nouveau</a>
                 </div>
                 <hr class="pb-4">
                 <div class="px-3 py-6 bg-white border-b border-gray-200">
@@ -23,7 +28,8 @@
                         @foreach($cars->items() as $c)
                             <tr>
                                 <td class="p-2 font-light text-sm">{{ $loop->index + 1 }}</td>
-                                <td class="p-2"><a href="{{ route('cars.show', $c->id)    }}">{{ $c->category->name }}</a></td>
+                                <td class="p-2"><a
+                                        href="{{ route('cars.show', $c->id)    }}">{{ $c->category->name }}</a></td>
                                 <td class="p-2">{{ $c->brand->name }}</td>
                                 <td class="p-2">{{ $c->model }}</td>
                                 <td class="p-2 font-semibold">{{ $c->is_available ? 'Oui' : 'Non' }}</td>
@@ -39,7 +45,7 @@
                     <!-- Pagination -->
                     <div class="text-right p-2">
                         {{ $cars->links() }}
-{{--                        <a href="/cars" class="text-gray-700 hover:text-gray-800">Voir plus ...</a>--}}
+                        {{--                        <a href="/cars" class="text-gray-700 hover:text-gray-800">Voir plus ...</a>--}}
                     </div>
                 </div>
             </div>
