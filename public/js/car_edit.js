@@ -963,15 +963,21 @@ var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be in strict mode.
 (() => {
 "use strict";
-/*!***********************************!*\
-  !*** ./resources/js/cars_form.js ***!
-  \***********************************/
+/*!**********************************!*\
+  !*** ./resources/js/car_edit.js ***!
+  \**********************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _editorjs_editorjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @editorjs/editorjs */ "./node_modules/@editorjs/editorjs/dist/editor.js");
 /* harmony import */ var _editorjs_editorjs__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_editorjs_editorjs__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _editorjs_config__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./editorjs.config */ "./resources/js/editorjs.config.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -983,15 +989,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 Alpine.data('form', function () {
   return {
     editor: null,
+    data: null,
+    // Populated from inline script
+    desc_keys: [],
+    // Populated from inline script
+    desc_values: [],
+    // Populated from inline script
     description: '',
     pairPropertiesCount: 0,
-    addPair: function addPair() {
-      var clone = this.$refs.keyValBlock.cloneNode(true);
-      clone.removeAttribute('x-ref');
-      this.$refs.pairsBlock.insertBefore(clone, this.$refs.pairBtn);
-      console.log(clone);
-    },
-    submit: function submit() {
+    remove: function remove() {
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
@@ -999,18 +1005,9 @@ Alpine.data('form', function () {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.t0 = JSON;
-                _context.next = 3;
-                return _this.editor.save();
+                _this.$refs.deleteForm.submit();
 
-              case 3:
-                _context.t1 = _context.sent;
-                _this.description = _context.t0.stringify.call(_context.t0, _context.t1);
-                _this.$refs.desc.value = _this.description;
-                console.log(_this.description);
-                if (_this.$refs.form.checkValidity()) _this.$refs.form.submit();else alert('Tous les champs du formulaire ne sont pas valides');
-
-              case 8:
+              case 1:
               case "end":
                 return _context.stop();
             }
@@ -1018,8 +1015,40 @@ Alpine.data('form', function () {
         }, _callee);
       }))();
     },
+    submit: function submit() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.t0 = JSON;
+                _context2.next = 3;
+                return _this2.editor.save();
+
+              case 3:
+                _context2.t1 = _context2.sent;
+                _this2.description = _context2.t0.stringify.call(_context2.t0, _context2.t1);
+                _this2.$refs.desc.value = _this2.description;
+                if (_this2.$refs.form.checkValidity()) _this2.$refs.form.submit();else alert('Tous les champs du formulaire ne sont pas valides');
+
+              case 7:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    },
     init: function init() {
-      this.editor = new (_editorjs_editorjs__WEBPACK_IMPORTED_MODULE_1___default())(_editorjs_config__WEBPACK_IMPORTED_MODULE_2__["default"]);
+      this.data = data;
+      this.desc_keys = desc_keys;
+      this.desc_values = desc_values;
+      this.pairPropertiesCount = desc_values.length;
+      this.editor = new (_editorjs_editorjs__WEBPACK_IMPORTED_MODULE_1___default())(_objectSpread(_objectSpread({}, _editorjs_config__WEBPACK_IMPORTED_MODULE_2__["default"]), {}, {
+        data: this.data
+      }));
     }
   };
 });

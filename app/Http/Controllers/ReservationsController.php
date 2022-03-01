@@ -20,7 +20,7 @@ class ReservationsController extends Controller
     public function index(Request $request)
     {
         $limit = $request->input('limit', 15);
-        $reservations = Reservation::simplePaginate(20);
+        $reservations = Reservation::latest()->simplePaginate(20);
 
         return view('reservations.index', compact('reservations'));
     }

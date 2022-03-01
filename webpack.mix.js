@@ -13,6 +13,8 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/cars_form.js', 'public/js')
+    .js('resources/js/car_edit.js', 'public/js')
+    .js('resources/js/readonly-editor.js', 'public/js')
     .postCss('resources/css/app.css', 'public/css', [
     require('postcss-import'),
     require('tailwindcss'),

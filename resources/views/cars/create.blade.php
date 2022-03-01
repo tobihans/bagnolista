@@ -51,7 +51,7 @@
                               file:rounded file:border-0
                               file:text-sm file:font-semibold
                               file:bg-violet-50 file:text-violet-700
-                              hover:file:bg-violet-100" multiple required>
+                              hover:file:bg-violet-100" min="2" max="10" multiple required>
                         </div>
                     </div>
                     <!-- Specs Data Edition -->
@@ -100,7 +100,7 @@
                         </div>
                     </div>
                     <!-- Description -->
-                    <div class="flex-col">
+                    <div class="flex-col m-2">
                         <label class="text-indigo-700">Description</label>
                         <div class="rounded bg-violet-50 p-6 w-full my-4 flex justify-center">
                             <div id="editor" class="w-4/6 bg-white rounded p-4"></div>

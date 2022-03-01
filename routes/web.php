@@ -22,14 +22,12 @@ use Illuminate\Support\Facades\Route;
 
 require __DIR__ . '/auth.php';
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', fn () => view('welcome'));
 
 Route::get('/dashboard', function () {
-    $reservations = Reservation::all()->take(15);
-    $cars = Car::all()->take(12);
-    $payments = Payment::all()->take(9);
+    $reservations = Reservation::latest()->take(15)->get();
+    $cars = Car::latest()->take(12)->get();
+    $payments = Payment::latest()->take(9)->get();
     $user_stats = User::all()->count();
     $non_available = Car::where('is_available', false)->count();
     $resa_stats = $non_available . ' / ' . Car::all()->count();
@@ -53,12 +51,12 @@ Route::controller(CarsController::class)
     ->middleware('auth')
     ->group(function () {
         Route::get('', 'index')->name('index');
-        Route::get('{id}', 'show')->whereNumber('id')->name('show');
+        Route::get('{car}', 'show')->whereNumber('car')->name('show');
         Route::get('new', 'create')->name('create');
-        Route::get('{id}/edit', 'edit')->whereNumber('id')->name('edit');
+        Route::get('{car}/edit', 'edit')->whereNumber('car')->name('edit');
         Route::post('', 'store')->name('store');
-        Route::put('{id}', 'update')->whereNumber('id')->name('update');
-        Route::delete('{id}', 'destroy')->whereNumber('id')->name('destroy');
+        Route::put('{car}', 'update')->whereNumber('car')->name('update');
+        Route::delete('{car}', 'destroy')->whereNumber('car')->name('destroy');
     });
 
 // Reservations
@@ -68,10 +66,10 @@ Route::controller(ReservationsController::class)
     ->middleware('auth')
     ->group(function () {
         Route::get('/', 'index')->name('index');
-        Route::get('/{id}', 'show')->whereNumber('id')->name('show');
+        Route::get('/{reservation}', 'show')->whereNumber('reservation')->name('show');
         Route::get('/new', 'create')->name('create');
-        Route::get('/{id}/edit', 'edit')->whereNumber('id')->name('edit');
+        Route::get('/{reservation}/edit', 'edit')->whereNumber('reservation')->name('edit');
         Route::post('/', 'store')->name('store');
-        Route::put('/{id}', 'update')->whereNumber('id')->name('update');
-        Route::delete('/{id}', 'destroy')->whereNumber('id')->name('destroy');
+        Route::put('/{reservation}', 'update')->whereNumber('reservation')->name('update');
+        Route::delete('/{reservation}', 'destroy')->whereNumber('reservation')->name('destroy');
     });

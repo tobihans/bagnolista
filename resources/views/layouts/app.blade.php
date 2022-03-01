@@ -17,27 +17,18 @@
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}"></script>
-        @stack('scripts')
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
             @include('layouts.navigation')
-
-            <!-- Page Heading -->
-            @isset($headers)
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endisset
-
             <!-- Page Content -->
-            <main class="pt-6">
+            <main class="pt-6 min-h-screen">
                 {{ $slot }}
             </main>
+            @include('layouts.footer')
         </div>
     </body>
+    @stack('scripts')
     <script>
         window.Alpine.start();
     </script>

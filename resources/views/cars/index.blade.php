@@ -16,7 +16,7 @@
                     <table class="w-full table-auto border-collapse text-align-left">
                         <thead class="font-medium bg-gray-600 text-gray-200">
                         <tr>
-                            <th class="p-2 text-left">#</th>
+                            <th class="p-2 text-left" colspan="2">#</th>
                             <th class="p-2 text-left">Catégorie</th>
                             <th class="p-2 text-left">Marque</th>
                             <th class="p-2 text-left">Modèle</th>
@@ -27,14 +27,20 @@
                         <tbody class="divide-y">
                         @foreach($cars->items() as $c)
                             <tr>
-                                <td class="p-2 font-light text-sm">{{ $loop->index + 1 }}</td>
+                                @php
+                                    $photo = explode(PHP_EOL, $c->photos)[0];
+                                @endphp
+                                <td class="p-2 font-light text-sm flex">
+                                    {{ $loop->index + 1 }}
+                                </td>
+                                <td><img src="{{ asset('storage/' . $photo) }}" height="45" width="45"></td>
                                 <td class="p-2"><a
                                         href="{{ route('cars.show', $c->id)    }}">{{ $c->category->name }}</a></td>
                                 <td class="p-2">{{ $c->brand->name }}</td>
                                 <td class="p-2">{{ $c->model }}</td>
                                 <td class="p-2 font-semibold">{{ $c->is_available ? 'Oui' : 'Non' }}</td>
                                 <td class="p-2">
-                                    <a class="font-light text-sm" href="{{ route('cars.edit', ['id' => $c->id]) }}">
+                                    <a class="font-light text-sm" href="{{ route('cars.edit', ['car' => $c->id]) }}">
                                         <i class="fa-solid fa-pen-to-square fa"></i>&nbsp;&nbsp;Editer
                                     </a>
                                 </td>

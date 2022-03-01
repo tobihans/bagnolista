@@ -1,5 +1,7 @@
 {
     "/js/app.js": "/js/app.js",
     "/js/cars_form.js": "/js/cars_form.js",
+    "/js/car_edit.js": "/js/car_edit.js",
+    "/js/readonly-editor.js": "/js/readonly-editor.js",
     "/css/app.css": "/css/app.css"
 }

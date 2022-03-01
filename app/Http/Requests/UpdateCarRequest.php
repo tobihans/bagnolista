@@ -13,7 +13,9 @@ class UpdateCarRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        $user = $this->user();
+
+        return $user && $user->is_admin;
     }
 
     /**
@@ -24,7 +26,17 @@ class UpdateCarRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'model' => 'bail|string',
+            'brand' => 'exists:brands,id',
+            'category' => 'exists:categories,id',
+            'pricing' =>'numeric',
+            'desc_keys' => 'array|min:1',
+            'desc_keys.*' => 'string',
+            'desc_values' => 'array|min:1',
+            'desc_values.*' => 'string',
+            'description' => 'string',
+            'photos' => 'array|min:2|max:10',
+            'photos.*' => 'file|mimes:jpg,webp,png,svg',
         ];
     }
 }

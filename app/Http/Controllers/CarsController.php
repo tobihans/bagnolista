@@ -10,6 +10,7 @@ use App\Models\Category;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -23,7 +24,7 @@ class CarsController extends Controller
     public function index(Request $request)
     {
         $limit = $request->input('limit', 15);
-        $cars = Car::simplePaginate(20);
+        $cars = Car::latest()->simplePaginate(20);
 
         return view('cars.index', compact('cars'));
     }
@@ -44,7 +45,7 @@ class CarsController extends Controller
      * Store a newly created resource in storage.
      *
      * @param StoreCarRequest $request
-     * @return Application|Factory|View
+     * @return RedirectResponse
      */
     public function store(StoreCarRequest $request)
     {
@@ -86,7 +87,7 @@ class CarsController extends Controller
             'is_available' => true,
         ]);
 
-        return view('cars.show', compact('car'));
+        return response()->redirectTo('/cars/' . $car->id);
     }
 
     /**
@@ -104,10 +105,13 @@ class CarsController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param Car $car
-     * @return Response
+     * @return Application|Factory|View
      */
     public function edit(Car $car)
     {
+        $categories = Category::all()->pluck('name', 'id');
+        $brands = Brand::all()->pluck('name', 'id');
+        return view('cars.edit', compact('brands', 'car', 'categories'));
     }
 
     /**
@@ -115,21 +119,65 @@ class CarsController extends Controller
      *
      * @param UpdateCarRequest $request
      * @param Car $car
-     * @return Response
+     * @return RedirectResponse
      */
     public function update(UpdateCarRequest $request, Car $car)
     {
+        $desc_keys = $request->input('desc_keys', []);
+        $desc_values = $request->input('desc_values', []);
+        $specs = [];
+        $count = min(count($desc_keys), count($desc_values));
+
+        for ($i = 0; $i < $count; $i++) {
+            if (!$desc_keys[$i] || !$desc_values[$i]) continue;
+            $specs[$desc_keys[$i]] = $desc_values[$i];
+        }
+        $specs_json = null;
+
+        if (count($specs) == 0) $specs_json = $car->specs;
+        else $specs_json = json_encode($specs);
+
+        $brand = $request->input('brand', $car->brand_id);
+        $category = $request->input('category', $car->category_id);
+        $desc = $request->input('description', $car->description);
+        $pricing = $request->input('pricing', $car->pricing);
+        $model = $request->input('model', $car->model);
+        $photos = null;
+
+        if ($request->hasFile('photos')) {
+            foreach ($request->file('photos') as $photo) {
+                $path = $photo->store('images', 'public');
+                if (is_null($photos)) {
+                    $photos = $path;
+                    continue;
+                }
+                $photos = "$photos\n$path";
+            }
+        }
+        $photos = $photos ?? $car->photos;
+
+        $car->update([
+            'model' => $model,
+            'brand_id' => $brand,
+            'category_id' => $category,
+            'pricing' =>$pricing,
+            'specs' => $specs_json,
+            'description' => $desc,
+            'photos' => $photos,
+        ]);
+
+        return response()->redirectTo('/cars/' . $car->id);
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param Car $car
-     * @return Application|Factory|View
+     * @return RedirectResponse
      */
     public function destroy(Car $car)
     {
         $car->delete();
-        return view('cars.index');
+        return \response()->redirectTo('/cars');
     }
 }
