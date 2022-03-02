@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Brand;
 use App\Models\Category;
+use Exception;
 use Faker\Provider\Fakecar;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -27,18 +28,17 @@ class CarFactory extends Factory
             'Nombre de sieges' => $this->faker->vehicleSeatCount(),
             'Autres' => implode(', ', $this->faker->vehicleProperties()),
         ], true);
-        $images = implode('\n', [
-            "https://source.unsplash.com/random/1600x900?automobile&car&automotive&vehicle&sig=121",
-            "https://source.unsplash.com/random/1600x900?automobile&car&automotive&vehicle&sig=122",
-            "https://source.unsplash.com/random/1600x900?automobile&car&automotive&vehicle&sig=123",
-            "https://source.unsplash.com/random/1600x900?automobile&car&automotive&vehicle&sig=124",
-            "https://source.unsplash.com/random/1600x900?automobile&car&automotive&vehicle&sig=125",
-        ]);
+        $images = <<<END
+https://source.unsplash.com/random/1600x900?automobile&car&automotive&vehicle&sig=121
+https://source.unsplash.com/random/1600x900?automobile&car&automotive&vehicle&sig=122
+https://source.unsplash.com/random/1600x900?automobile&car&automotive&vehicle&sig=123
+https://source.unsplash.com/random/1600x900?automobile&car&automotive&vehicle&sig=124
+https://source.unsplash.com/random/1600x900?automobile&car&automotive&vehicle&sig=125
+END;
         try {
             $brand = Brand::all()->pluck('id')->random();
             $category = Category::all()->pluck('id')->random();
-        }
-        catch (\Exception $e) {
+        } catch (Exception $e) {
             $brand = 1;
             $category = 1;
         }

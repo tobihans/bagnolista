@@ -26,7 +26,7 @@
                     @php
                         $count = count($photos);
                     @endphp
-                    <div class="w-2/12 p-2 bg-violet-100 rounded flex flex-col {{ $count <= 3 ? 'justify-start' : 'justify-between' }}">
+                    <div class="w-2/12 p-2 bg-violet-100 rounded flex flex-col justify-start">
                         @foreach($photos as $p)
                             @continue($loop->index == 0)
                             @php
@@ -36,7 +36,7 @@
                             <img
                                 src="{{ $is_full_url ? $url : asset('storage/' . $url) }}"
                                 width="150" height="150" class="mx-auto my-2 rounded self-center">
-                            @break($loop->iteration == 6)
+                            @break($loop->iteration == 7)
                         @endforeach
                     </div>
                 </div>
