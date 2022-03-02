@@ -31,6 +31,5 @@ yarn watch # Lance mix watch & srtisan serve en mm temps
 
 ### Captures des pages developpées
 - Accueil
-![Home ShowCase](captures/home.gif)
 ![Home Capture 1](captures/home-1.png)
 ![Home Capture 2](captures/home-2.png)

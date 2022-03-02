@@ -2,10 +2,11 @@
 
 namespace Database\Factories;
 
+use Faker\Provider\Fakecar;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Brand>
+ * @extends Factory
  */
 class BrandFactory extends Factory
 {
@@ -16,8 +17,10 @@ class BrandFactory extends Factory
      */
     public function definition()
     {
+        $this->faker->addProvider(new Fakecar($this->faker));
+        $v = $this->faker->vehicleArray();
         return [
-            'name' => $this->faker->company(),
+            'name' => $v['brand'],
             'logo' => $this->faker->imageUrl(50, 50),
         ];
     }
