@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use Faker\Provider\Fakecar;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +17,9 @@ class CategoryFactory extends Factory
      */
     public function definition()
     {
+        $this->faker->addProvider(new Fakecar($this->faker));
         return [
-            'name' => $this->faker->name(),
+            'name' => $this->faker->vehicleType(),
         ];
     }
 }

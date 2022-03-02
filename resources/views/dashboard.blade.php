@@ -29,7 +29,7 @@
                                 </div>
                                 <div class="flex items-center">
                                     <div class="text-lg text-white font-light">
-                                        {{ $resa_stats }} Voitures réservées
+                                        {{ $resa_stats }} Réservations
                                     </div>
                                 </div>
                             </div>
@@ -68,8 +68,7 @@
                                     <td class="p-2 font-light text-sm">{{ $loop->index + 1 }}</td>
                                     <td class="p-2">{{ $r->user->name }}</td>
                                     <td class="p-2">
-                                        <span class="font-sans font-semibold">{{ $r->car->category->name }},</span>
-                                        <span>{{ $r->car->brand->name . ' ' . $r->car->model }}</span>
+                                        <span><b>{{ $r->car->brand->name}}</b>&nbsp;&nbsp;{{ $r->car->model }}</span>
                                     </td>
                                     <td class="p-2">{{ $r->starts_at }}</td>
                                     <td class="p-2">{{ $r->duration }}</td>
@@ -133,7 +132,7 @@
                         @foreach($payments as $p)
                             <tr>
                                 <td class="p-2 font-light text-sm">{{ $loop->index + 1 }}</td>
-                                <td class="p-2">{{ $r->user->name }}</td>
+                                <td class="p-2">{{ $p->user->name }}</td>
                                 <td class="p-2 font-semibold">{{ $p->amount . ' XOF' }}</td>
                                 <td class="p-2">{{ $p->created_at }}</td>
                                 <td class="p-2 font-semibold">{{ $p->user->credits . ' XOF' }}</td>

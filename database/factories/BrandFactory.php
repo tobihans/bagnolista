@@ -18,9 +18,8 @@ class BrandFactory extends Factory
     public function definition()
     {
         $this->faker->addProvider(new Fakecar($this->faker));
-        $v = $this->faker->vehicleArray();
         return [
-            'name' => $v['brand'],
+            'name' => $this->faker->vehicleBrand(),
             'logo' => $this->faker->imageUrl(50, 50),
         ];
     }

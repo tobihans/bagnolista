@@ -21,13 +21,13 @@
         </div>
     </div>
     <div id="shop" class="pt-20 min-h-screen flex max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-white">
-        <div class="w-2/12 flex flex-col border-x">
-            <div class="grow">
+        <div class="w-2/12 flex flex-col">
+            <div class="">
                 <div class="h16 bg-cyan-600 text-cyan-50 py-2 px-4 border-x-2 border-cyan-600">Marques</div>
-                <div class="flex flex-wrap">
+                <div class="flex flex-wrap border-x">
                     @foreach($brands as $b)
                         @php
-                            $selected = $b == $search_brand;
+                            $selected = $b == $search_brand
                         @endphp
                         <a href="?brand={{$b}}#shop" @class([
                                         'block',
@@ -50,12 +50,12 @@
                     @endforeach
                 </div>
             </div>
-            <div class="grow my-2">
+            <div class="my-2">
                 <div class="h16 bg-emerald-600 text-emerald-50 py-2 px-4 border-x-2 border-emerald-600">Catégories</div>
-                <div class="flex flex-wrap">
+                <div class="flex flex-wrap border-x">
                     @foreach($categories as $c)
                         @php
-                            $selected = $c == $search_category;
+                            $selected = $c == $search_category
                         @endphp
                         <a href="?category={{$c}}#shop" @class([
                                         'block',
@@ -96,10 +96,13 @@
             </div>
             <div class="cars-container grow p-6 flex flex-wrap justify-center gap-y-0.5 gap-x-2">
                 @foreach($cars->items() as $c)
-                    <div class="car-card max-h-80 rounded overflow-hidden shadow-lg">
-                        {{-- Ideally src should be something like that {{ asset('storage/' . $c->photo }} --}}
-                        {{-- But cannot export storage file to CSV so, getting placeholder images does the work --}}
-                        <img class="w-full" src="https://source.unsplash.com/random/1600x900?automobile&car&automotive&vehicle"
+                    @php
+                        $photos = explode(PHP_EOL, $c->photos);
+                        $url = $photos[0];
+                        $is_full_url = Str::startsWith($url, ['http://', 'https://']);
+                    @endphp
+                    <div class="car-card max-h-80 rounded overflow-hidden shadow-lg my-2">
+                        <img class="w-full" src="{{ $is_full_url ? $url : asset('storage/' . $url) }}"
                              alt="Sunset in the mountains">
                         <div class="px-6 py-2">
                             <div class="font-bold text-xl mb-2">{{ $c->model }}</div>
@@ -107,7 +110,7 @@
                         </div>
                         <div class="px-6 py-4 flex">
           <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">
-             #{{ Str::substr($c->category->name, 0, 10) }}{{ Str::length($c->category->name) > 10 ? '...' : '' }}
+             #{{ Str::substr($c->category->name, 0, 15) }}{{ Str::length($c->category->name) > 15 ? '...' : '' }}
            </span>
                             <a
                                 href="{{ route('cars.show', ['car' => $c->id]) }}"
@@ -121,7 +124,7 @@
                 @endforeach
             </div>
             <div class="ml-4 mb-4">
-                {{ $cars->links() }}
+                {{ $cars->fragment('shop')->links() }}
             </div>
         </div>
     </div>

@@ -28,12 +28,13 @@
                         @foreach($cars->items() as $c)
                             <tr>
                                 @php
-                                    $photo = explode(PHP_EOL, $c->photos)[0];
+                                    $url = explode(PHP_EOL, $c->photos)[0];
+                                    $is_full_url = Str::startsWith($url, ['http://', 'https://']);
                                 @endphp
                                 <td class="p-2 font-light text-sm flex">
                                     {{ $loop->index + 1 }}
                                 </td>
-                                <td><img src="{{ asset('storage/' . $photo) }}" height="45" width="45"></td>
+                                <td><img src="{{ $is_full_url ? $url : asset('storage/' . $url) }}" height="45" width="45"></td>
                                 <td class="p-2"><a
                                         href="{{ route('cars.show', $c->id)    }}">{{ $c->category->name }}</a></td>
                                 <td class="p-2">{{ $c->brand->name }}</td>

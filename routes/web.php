@@ -37,10 +37,9 @@ Route::get('/dashboard', function () {
     $reservations = Reservation::latest()->take(15)->get();
     $cars = Car::latest()->take(12)->get();
     $payments = Payment::latest()->take(9)->get();
-    $user_stats = User::all()->count();
-    $non_available = Car::where('is_available', false)->count();
-    $resa_stats = $non_available . ' / ' . Car::all()->count();
-    $payments_stats = Payment::all()->count();
+    $user_stats = User::count();
+    $resa_stats = Reservation::count();
+    $payments_stats = Payment::count();
     return view('dashboard', compact(
         'reservations',
         'cars',

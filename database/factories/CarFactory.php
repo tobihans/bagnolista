@@ -2,10 +2,13 @@
 
 namespace Database\Factories;
 
+use App\Models\Brand;
+use App\Models\Category;
+use Faker\Provider\Fakecar;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Car>
+ * @extends Factory
  */
 class CarFactory extends Factory
 {
@@ -16,13 +19,40 @@ class CarFactory extends Factory
      */
     public function definition()
     {
+        $this->faker->addProvider(new Fakecar($this->faker));
+        $specs = json_encode([
+            'Carburant' => $this->faker->vehicleFuelType(),
+            'Boite de vitesse' => $this->faker->vehicleGearBoxType(),
+            'Nombre de portes' => $this->faker->vehicleDoorCount(),
+            'Nombre de sieges' => $this->faker->vehicleSeatCount(),
+            'Autres' => implode(', ', $this->faker->vehicleProperties()),
+        ], true);
+        $images = implode('\n', [
+            "https://source.unsplash.com/random/1600x900?automobile&car&automotive&vehicle&sig=121",
+            "https://source.unsplash.com/random/1600x900?automobile&car&automotive&vehicle&sig=122",
+            "https://source.unsplash.com/random/1600x900?automobile&car&automotive&vehicle&sig=123",
+            "https://source.unsplash.com/random/1600x900?automobile&car&automotive&vehicle&sig=124",
+            "https://source.unsplash.com/random/1600x900?automobile&car&automotive&vehicle&sig=125",
+        ]);
+        try {
+            $brand = Brand::all()->pluck('id')->random();
+            $category = Category::all()->pluck('id')->random();
+        }
+        catch (\Exception $e) {
+            $brand = 1;
+            $category = 1;
+        }
+        $fake_desc = file_get_contents(__DIR__ . '/fake_desc.json');
+
         return [
-            'model' => $this->faker->word(),
-            'specs' => '{"engine": "gas", "rotor": "rooot"}',
-            'photos' => $this->faker->imageUrl(),
+            'brand_id' => $brand,
+            'category_id' => $category,
+            'model' => $this->faker->vehicleModel(),
+            'specs' => $specs,
+            'photos' => $images,
             'pricing' => $this->faker->randomNumber(3),
-            'description' => '',
-            'is_available' => $this->faker->boolean() == 0,
+            'description' => $fake_desc,
+            'is_available' => true,
         ];
     }
 }

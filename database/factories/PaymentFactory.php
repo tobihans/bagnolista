@@ -18,7 +18,7 @@ class PaymentFactory extends Factory
     {
         return [
             'transaction_id' => $this->faker->swiftBicNumber(),
-            'amount' => $this->faker->randomNumber(2),
+            'amount' => $this->faker->randomNumber(4),
         ];
     }
 }

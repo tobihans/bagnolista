@@ -9,7 +9,9 @@
         <script src="{{ asset('js/readonly-editor.js') }}"></script>
     @endpush
     @php
-        $photos = explode(PHP_EOL, $car->photos)
+        $photos = explode(PHP_EOL, $car->photos);
+        $url = $photos[0];
+        $is_full_url = Str::startsWith($url, ['http://', 'https://']);
     @endphp
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -18,7 +20,7 @@
                 <div class="flex justify-between">
                     <div class="w-10/12 mr-4">
                         <img class="rounded"
-                             src="{{-- asset('storage/' . $photos[0]) --}}https://source.unsplash.com/random/1600x900?automobile&car&automotive&vehicle&sig=123456"
+                             src="{{ $is_full_url ? $url : asset('storage/' . $url) }}"
                              alt="Image descriptive de {{ $car->model }}">
                     </div>
                     @php
@@ -27,8 +29,12 @@
                     <div class="w-2/12 p-2 bg-violet-100 rounded flex flex-col {{ $count <= 3 ? 'justify-start' : 'justify-between' }}">
                         @foreach($photos as $p)
                             @continue($loop->index == 0)
+                            @php
+                                $url = $p;
+                                $is_full_url = Str::startsWith($url, ['http://', 'https://']);
+                            @endphp
                             <img
-                                src="{{-- asset('storage/' . $p) --}}https://source.unsplash.com/random/1600x900?automobile&car&automotive&vehicle"
+                                src="{{ $is_full_url ? $url : asset('storage/' . $url) }}"
                                 width="150" height="150" class="mx-auto my-2 rounded self-center">
                             @break($loop->iteration == 6)
                         @endforeach
@@ -37,9 +43,9 @@
                 <!-- Name + Desc -->
                 <div class="mt-6">
                     <div class="text-4xl font-semibold flex">
-                        <span>{{ $car->brand->name . ' ' . $car->model }}</span>
+                        <span class="mr-auto">{{ $car->brand->name . ' ' . $car->model }}</span>
                         @if($car->is_available)
-                        <a href="#" class="ml-auto block text-sm text-slate-500
+                        <a href="#" class="block text-sm text-slate-500
                               m-2 py-2 px-4
                               rounded-md border-0
                               text-sm font-semibold

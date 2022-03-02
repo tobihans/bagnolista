@@ -7,8 +7,8 @@
     @endphp
     @push('scripts')
         <script>
-            const desc_keys = {{ Js::from(array_slice($desc_values, 1)) }};
-            const desc_values = {{ Js::from(array_slice($desc_keys, 1)) }};
+            const desc_keys = {{ Js::from(array_slice($desc_keys, 1)) }};
+            const desc_values = {{ Js::from(array_slice($desc_values, 1)) }};
             const data = {{ Js::from($desc) }};
         </script>
         <script src="{{ asset('js/car_edit.js') }}"></script>
