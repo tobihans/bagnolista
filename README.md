@@ -1,25 +1,36 @@
 # Bagnolista
 
-## Projet d'application de gestion de location de véhicules
+## Projet d'application de gestion d'emprunt de véhicules
+
+## Membres:
+- AVADEME Harold
+- TOGNON Hans
 
 ### Requirements
 - PHP 8.x
 - Composer 2.x
 - Node 14.x
 - Yarn 1.22.x
-
-In cases you do not satisfy the requirements, 
-it's possible to run the application in Docker containers via Laravel Sail.
+- 
+*Ou avec Laravel sail*
+- docker-compose 
+- Docker 
 
 ### Setup
 ```bash
 composer install
 yarn install
-yarn dev
 cp .env.example .env
 ./artisan key:generate
-./artisan db:seed # Fill your dev DB with dummy data
-./artisan serve # Starts the project locally
+./artisan migrate
+./artisan db:seed
+yarn watch # Lance mix watch & srtisan serve en mm temps
 # Or with Sail
-./sail up -d # ./sail is a symlink to vendor/bin/sail
+./sail up -d
 ```
+
+### Captures des pages developpées
+- Accueil
+![Home ShowCase](captures/home.gif)
+![Home Capture 1](captures/home-1.png)
+![Home Capture 2](captures/home-2.png)
