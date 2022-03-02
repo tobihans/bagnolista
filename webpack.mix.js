@@ -1,4 +1,5 @@
 const mix = require('laravel-mix');
+require('laravel-mix-serve');
 
 /*
  |--------------------------------------------------------------------------
@@ -20,4 +21,4 @@ mix.js('resources/js/app.js', 'public/js')
     require('postcss-import'),
     require('tailwindcss'),
     require('autoprefixer'),
-]);
+]).serve();

@@ -9,23 +9,41 @@
                         <thead class="font-medium bg-gray-600 text-gray-200">
                         <tr>
                             <th class="p-2 text-left">#</th>
+                            @if($is_admin)
                             <th class="p-2 text-left">Utilisateur</th>
+                            @endif
                             <th class="p-2 text-left">Voiture</th>
                             <th class="p-2 text-left">Date</th>
                             <th class="p-2 text-left">Durée</th>
+                            @if(!$is_admin)
+                                <th class="p-2 text-left"></th>
+                            @endif
                         </tr>
                         </thead>
                         <tbody class="divide-y">
                         @foreach($reservations as $r)
                             <tr>
                                 <td class="p-2 font-light text-sm">{{ $loop->index + 1 }}</td>
+                                @if($is_admin)
                                 <td class="p-2">{{ $r->user->name }}</td>
+                                @endif
                                 <td class="p-2">
                                     <span class="font-sans font-semibold">{{ $r->car->category->name }},</span>
                                     <span>{{ $r->car->brand->name . ' ' . $r->car->model }}</span>
                                 </td>
                                 <td class="p-2">{{ $r->starts_at }}</td>
                                 <td class="p-2">{{ $r->duration }}</td>
+                                @if(!$is_admin)
+                                    <td class="p-2 text-sm">
+                                        <form method="POST" action="{{ route('reservations.destroy', ['reservation' => $r->id]) }}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <a href="#" onclick="event.preventDefault();this.closest('form').submit();">
+                                                Libérer
+                                            </a>
+                                        </form>
+                                    </td>
+                                @endif
                             </tr>
                         @endforeach
                         </tbody>

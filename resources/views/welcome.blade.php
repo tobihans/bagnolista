@@ -6,8 +6,8 @@
         <div class="w-5/12 px-8 py-12 flex flex-col justify-center items-start text-white">
             <p class="text-7xl uppercase font-bold brand-name">Bagnolista</p>
             <p class="my-4 text-2xl uppercase">
-{{--                Tous les gouts.--}}
-{{--                <br>--}}
+                {{--                Tous les gouts.--}}
+                {{--                <br>--}}
                 Etreignez le volant des plus belles <span class="font-semibold">montures</span>!
             </p>
             <a href="#shop" class="block text-sm text-slate-500
@@ -21,19 +21,117 @@
         </div>
     </div>
     <div id="shop" class="pt-20 min-h-screen flex max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-white">
-        <div class="w-3/12 flex flex-col">
+        <div class="w-2/12 flex flex-col border-x">
             <div class="grow">
-                <div class="h12">Marques</div>
-                <div class="flex wrap"></div>
+                <div class="h16 bg-cyan-600 text-cyan-50 py-2 px-4 border-x-2 border-cyan-600">Marques</div>
+                <div class="flex flex-wrap">
+                    @foreach($brands as $b)
+                        @php
+                            $selected = $b == $search_brand;
+                        @endphp
+                        <a href="?brand={{$b}}#shop" @class([
+                                        'block',
+                                        'text-sm',
+                                        'm-2',
+                                        'p-2',
+                                        'rounded-full',
+                                        'border-0',
+                                        'text-xs',
+                                        'font-semibold',
+                                        'bg-cyan-700' => $selected,
+                                        'text-cyan-50' => $selected,
+                                        'hover:bg-cyan-600' => $selected,
+                                        'bg-cyan-50' => !$selected,
+                                        'text-cyan-700' => !$selected,
+                                        'hover:bg-cyan-100' => !$selected,
+])>
+                            {{ $b }}
+                        </a>
+                    @endforeach
+                </div>
             </div>
-            <div class="grow">
-                <div class="h12">Catégories</div>
-                <div class="flex wrap"></div>
+            <div class="grow my-2">
+                <div class="h16 bg-emerald-600 text-emerald-50 py-2 px-4 border-x-2 border-emerald-600">Catégories</div>
+                <div class="flex flex-wrap">
+                    @foreach($categories as $c)
+                        @php
+                            $selected = $c == $search_category;
+                        @endphp
+                        <a href="?category={{$c}}#shop" @class([
+                                        'block',
+                                        'text-sm',
+                                        'm-2',
+                                        'p-2',
+                                        'rounded-full',
+                                        'border-0',
+                                        'text-xs',
+                                        'font-semibold',
+                                        'bg-emerald-700' => $selected,
+                                        'text-emerald-50' => $selected,
+                                        'hover:bg-emerald-600' => $selected,
+                                        'bg-emerald-50' => !$selected,
+                                        'text-emerald-700' => !$selected,
+                                        'hover:bg-emerald-100' => !$selected,
+])>
+                            {{ $c }}
+                        </a>
+                    @endforeach
+                </div>
             </div>
         </div>
-        <div class="w-9/12 flex flex-col">
-            <div class="h-16"></div>
-            <div class="grow"></div>
+        <div class="w-10/12 flex flex-col">
+            <div class="h-16 px-4 flex justify-center items-center relative">
+                <form class="flex justify-center grow">
+                    <input type="search" placeholder="E.g Bentley 1960, Chevrolet Camaro (Not impl...)"
+                           class="rounded min-w-64 w-5/12">
+                    <button class="ml-4 block text-sm text-slate-500
+                              mr-2 py-2 px-4
+                              rounded-md border-0
+                              text-sm font-semibold
+                              bg-violet-700 text-violet-50
+                              hover:bg-violet-600">Rechercher
+                    </button>
+                </form>
+                <hr class="w-full absolute" style="bottom: 0;">
+            </div>
+            <div class="cars-container grow p-6 flex flex-wrap justify-center gap-y-0.5 gap-x-2">
+                @foreach($cars->items() as $c)
+                    <div class="car-card max-h-80 rounded overflow-hidden shadow-lg">
+                        {{-- Ideally src should be something like that {{ asset('storage/' . $c->photo }} --}}
+                        {{-- But cannot export storage file to CSV so, getting placeholder images does the work --}}
+                        <img class="w-full" src="https://source.unsplash.com/random/1600x900?automobile&car&automotive&vehicle"
+                             alt="Sunset in the mountains">
+                        <div class="px-6 py-2">
+                            <div class="font-bold text-xl mb-2">{{ $c->model }}</div>
+                            <p class="text-gray-700 text-base">{{ $c->brand->name }}</p>
+                        </div>
+                        <div class="px-6 py-4 flex">
+          <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">
+             #{{ Str::substr($c->category->name, 0, 10) }}{{ Str::length($c->category->name) > 10 ? '...' : '' }}
+           </span>
+                            <a
+                                href="{{ route('cars.show', ['car' => $c->id]) }}"
+                                class="inline-block
+                            bg-gray-200 rounded-full px-3 py-1 text-sm
+                            font-semibold text-white mr-2
+                            ml-auto bg-gradient-to-br from-cyan-600 to-emerald-800">Voir&nbsp;<i
+                                    class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+            <div class="ml-4 mb-4">
+                {{ $cars->links() }}
+            </div>
         </div>
     </div>
+    <style>
+        .cars-container {
+            align-items: flex-start;
+        }
+
+        .car-card {
+            max-width: 18rem;
+        }
+    </style>
 </x-app-layout>

@@ -17,7 +17,8 @@
                 <!-- Photos -->
                 <div class="flex justify-between">
                     <div class="w-10/12 mr-4">
-                        <img class="rounded" src="{{ asset('storage/' . $photos[0]) }}"
+                        <img class="rounded"
+                             src="{{-- asset('storage/' . $photos[0]) --}}https://source.unsplash.com/random/1600x900?automobile&car&automotive&vehicle&sig=123456"
                              alt="Image descriptive de {{ $car->model }}">
                     </div>
                     @php
@@ -26,7 +27,9 @@
                     <div class="w-2/12 p-2 bg-violet-100 rounded flex flex-col {{ $count <= 3 ? 'justify-start' : 'justify-between' }}">
                         @foreach($photos as $p)
                             @continue($loop->index == 0)
-                            <img src="{{ asset('storage/' . $p) }}" width="150" height="150" class="mx-auto my-2 rounded self-center">
+                            <img
+                                src="{{-- asset('storage/' . $p) --}}https://source.unsplash.com/random/1600x900?automobile&car&automotive&vehicle"
+                                width="150" height="150" class="mx-auto my-2 rounded self-center">
                             @break($loop->iteration == 6)
                         @endforeach
                     </div>
@@ -35,12 +38,14 @@
                 <div class="mt-6">
                     <div class="text-4xl font-semibold flex">
                         <span>{{ $car->brand->name . ' ' . $car->model }}</span>
+                        @if($car->is_available)
                         <a href="#" class="ml-auto block text-sm text-slate-500
                               m-2 py-2 px-4
                               rounded-md border-0
                               text-sm font-semibold
                               bg-violet-700 text-violet-100
                               hover:bg-violet-600">Réserver</a>
+                        @endif
                         @if(Auth::user() && Auth::user()->is_admin)
                             <a href="{{ route('cars.edit', ['car' => $car->id]) }}" class="block text-sm text-slate-500
                               m-2 py-2 px-4
@@ -51,7 +56,7 @@
                         @endif
                     </div>
                     <p class="text-violet-700">
-                        @if(count($desc['blocks']) == 0)
+                        @if(!($desc) || ($desc && count($desc['blocks']) == 0))
                             Aucune
                         @endif
                         Description

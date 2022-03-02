@@ -2,11 +2,13 @@
 
 use App\Http\Controllers\CarsController;
 use App\Http\Controllers\ReservationsController;
-use App\Http\Controllers\SettingsController;
+use App\Models\Brand;
 use App\Models\Car;
+use App\Models\Category;
 use App\Models\Payment;
 use App\Models\Reservation;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,7 +24,14 @@ use Illuminate\Support\Facades\Route;
 
 require __DIR__ . '/auth.php';
 
-Route::get('/', fn () => view('welcome'));
+Route::get('/', function (Request $request) {
+    $search_brand = $request->query('brand', '');
+    $search_category = $request->query('category', '');
+    $cars = Car::where('is_available', true)->latest()->simplePaginate(50);
+    $brands = Brand::all()->pluck('name');
+    $categories = Category::all()->pluck('name');
+    return view('welcome', compact('cars', 'brands', 'categories', 'search_brand', 'search_category'));
+});
 
 Route::get('/dashboard', function () {
     $reservations = Reservation::latest()->take(15)->get();
@@ -42,6 +51,7 @@ Route::get('/dashboard', function () {
     ));
 })->middleware(['auth'])->name('dashboard');
 
+// TODO: Remove it from anywhere
 Route::get('/settings', [SettingsController::class, 'index'])->name('settings');
 
 // Cars
@@ -51,7 +61,7 @@ Route::controller(CarsController::class)
     ->middleware('auth')
     ->group(function () {
         Route::get('', 'index')->name('index');
-        Route::get('{car}', 'show')->whereNumber('car')->name('show');
+        Route::get('{car}', 'show')->whereNumber('car')->name('show')->withoutMiddleware('auth');
         Route::get('new', 'create')->name('create');
         Route::get('{car}/edit', 'edit')->whereNumber('car')->name('edit');
         Route::post('', 'store')->name('store');
