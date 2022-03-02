@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->foreignId('car_id')->constrained();
-            $table->timestamp('starts_at');
+            $table->timestamp('starts_at')->useCurrent();
             $table->integer('duration');
             $table->double('total_amount');
             $table->timestamps();

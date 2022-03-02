@@ -106,7 +106,10 @@
                              alt="Sunset in the mountains">
                         <div class="px-6 py-2">
                             <div class="font-bold text-xl mb-2">{{ $c->model }}</div>
-                            <p class="text-gray-700 text-base">{{ $c->brand->name }}</p>
+                            <div class="text-gray-700 text-base flex justify-between">
+                                <span>{{ $c->brand->name }}</span>
+                                <span class="font-light text-sm">{{ $c->pricing . ' XOF' }}</span>
+                            </div>
                         </div>
                         <div class="px-6 py-4 flex">
           <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">

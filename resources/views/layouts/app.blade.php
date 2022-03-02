@@ -22,7 +22,7 @@
         <div class="min-h-screen bg-gray-100">
             @include('layouts.navigation')
             <!-- Page Content -->
-            <main class="pt-6 min-h-screen">
+            <main class="pt-6 min-h-screen mb-2">
                 {{ $slot }}
             </main>
             @include('layouts.footer')
