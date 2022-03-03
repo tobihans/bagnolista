@@ -1,1 +1,1 @@
-web: (./artisan storage:link || yes) && vendor/bin/heroku-php-apache2 public/
+web: (./artisan storage:link || true) && vendor/bin/heroku-php-apache2 public/

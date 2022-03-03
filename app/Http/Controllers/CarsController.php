@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateCarRequest;
 use App\Models\Brand;
 use App\Models\Car;
 use App\Models\Category;
+use App\Models\Reservation;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -179,5 +180,29 @@ class CarsController extends Controller
     {
         $car->delete();
         return \response()->redirectTo('/cars');
+    }
+
+    public function reservation(Car $car) {
+        return view('cars.reserve', compact('car'));
+    }
+
+    public function reserve(Request $request, Car $car) {
+        $user_id = $request->user()->id;
+        $date = $request->input('date');
+        $hour = $request->input('hour');
+        $minutes = $request->input('minutes');
+        $duration = $request->input('duration');
+
+        $reservation = Reservation::create([
+            'car_id' => $car->id,
+            'user_id' => $user_id,
+            'starts_at' => "$date $hour:$minutes",
+            'duration' => $duration,
+            'total_amount' => $duration * $car->pricing,
+        ]);
+
+        $car->update(['is_available' => false]);
+
+        return \view('cars.reserved', compact('reservation'));
     }
 }

@@ -1,5 +1,0 @@
-release:
-  command:
-    - ./artisan storage:link
-run:
-  web: vendor/bin/heroku-php-apache2 public/

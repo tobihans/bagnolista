@@ -63,6 +63,8 @@ Route::controller(CarsController::class)
         Route::get('{car}', 'show')->whereNumber('car')->name('show')->withoutMiddleware('auth');
         Route::get('new', 'create')->name('create');
         Route::get('{car}/edit', 'edit')->whereNumber('car')->name('edit');
+        Route::get('{car}/reservation', 'reservation')->name('reservation');
+        Route::post('{car}/reserve', 'reserve')->name('reserve');
         Route::post('', 'store')->name('store');
         Route::put('{car}', 'update')->whereNumber('car')->name('update');
         Route::delete('{car}', 'destroy')->whereNumber('car')->name('destroy');

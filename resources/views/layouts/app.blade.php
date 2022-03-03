@@ -17,6 +17,7 @@
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}"></script>
+        @stack('top')
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">

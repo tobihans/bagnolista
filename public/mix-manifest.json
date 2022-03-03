@@ -3,6 +3,7 @@
     "/js/cars_form.js": "/js/cars_form.js",
     "/js/car_edit.js": "/js/car_edit.js",
     "/js/readonly-editor.js": "/js/readonly-editor.js",
+    "/js/reserve_car.js": "/js/reserve_car.js",
     "/css/app.css": "/css/app.css",
     "/css/home.css": "/css/home.css"
 }

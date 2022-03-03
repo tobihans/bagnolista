@@ -16,6 +16,7 @@ mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/cars_form.js', 'public/js')
     .js('resources/js/car_edit.js', 'public/js')
     .js('resources/js/readonly-editor.js', 'public/js')
+    .js('resources/js/reserve_car.js', 'public/js')
     .css('resources/css/home.css', 'public/css')
     .postCss('resources/css/app.css', 'public/css', [
     require('postcss-import'),

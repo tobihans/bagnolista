@@ -45,7 +45,7 @@
                     <div class="text-4xl font-semibold flex">
                         <span class="mr-auto">{{ $car->brand->name . ' ' . $car->model }}</span>
                         @if($car->is_available)
-                        <a href="#" class="block text-sm text-slate-500
+                        <a href="{{ route('cars.reservation', ['car' => $car->id]) }}" class="block text-sm text-slate-500
                               m-2 py-2 px-4
                               rounded-md border-0
                               text-sm font-semibold
