@@ -83,7 +83,7 @@
             <div class="h-16 px-4 flex justify-center items-center relative">
                 <form class="flex justify-center grow">
                     <input type="search" placeholder="E.g Bentley 1960, Chevrolet Camaro (Not impl...)"
-                           class="rounded min-w-64 w-5/12">
+                           class="rounded min-w-64 w-5/12 border-gray-300">
                     <button class="ml-4 block text-sm text-slate-500
                               mr-2 py-2 px-4
                               rounded-md border-0
