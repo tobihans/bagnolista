@@ -35,7 +35,12 @@ yarn watch # Lance mix watch & srtisan serve en mm temps
 ```
 
 Demo: [http://bagnolista.herokuapp.com](http://bagnolista.herokuapp.com/login)
-Compte Lambda:
+
+**Compte Lambda:**
+
+*User:* brenner@example.net
+
+*Password:* password
 
 ### Captures des pages developpées
 
