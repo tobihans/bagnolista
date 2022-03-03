@@ -65,6 +65,11 @@ Demo: [http://bagnolista.herokuapp.com](http://bagnolista.herokuapp.com/login)
     ![New Car 1](captures/newcar1.png)
     ![New Car 1](captures/newcar2.png)
 
+- Page de details d'une voiture
+    ![Car View 1](captures/car-view1.png)
+    ![Car View 2](captures/car-view2.png)
+    ![Car View 3](captures/car-view3.png)
+
 - Mise a jour de voiture
     ![Update Car](captures/update-delete-car.png)
 
